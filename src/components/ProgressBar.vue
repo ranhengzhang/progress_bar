@@ -2,9 +2,11 @@
     <div class="box">
         <div class="progress">
             <div class="bar" ref="bar" :style="`width: ${scale}`"></div>
-            <slot>
-                <img src="@/assets/progress_bar_button.png" alt="" :style="`left: calc(${scale} - 24px)`">
-            </slot>
+            <div class="button" :style="`left: calc(${scale} - 24px)`">
+                <slot>
+                    <img src="@/assets/progress_bar_button.png" alt="">
+                </slot>
+            </div>
         </div>
         <div class="title">{{ title }}的进度：{{ recent }}/{{ total }}</div>
     </div>
@@ -28,6 +30,7 @@ onMounted(()=>{
 <style lang="less" scoped>
 .box {
     width: 600px;
+    margin: 20px auto;
 
     .progress {
         position: relative;
@@ -41,14 +44,23 @@ onMounted(()=>{
             border-radius: inherit;
         }
 
-        img {
+        .button {
             width: 48px;
             height: 48px;
             position: absolute;
             top: -16px;
+            border-radius: 50%;
+            border: #ccc 2px solid;
+            background-color: #bbb;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
-    
+
     .title {
         text-align: center;
         margin-top: 8px;
